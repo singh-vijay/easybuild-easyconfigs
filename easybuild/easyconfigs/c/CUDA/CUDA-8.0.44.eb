@@ -13,6 +13,9 @@ source_urls = ['https://developer.nvidia.com/compute/cuda/%(version_major_minor)
 
 sources = ['%(namelower)s_%(version)s_linux-run']
 
+modluafooter = 'add_property("arch","gpu")'
+
+
 modextravars = {'CUDA_HOME': '%(installdir)s'}
 
 moduleclass = 'system'
