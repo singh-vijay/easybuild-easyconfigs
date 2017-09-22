@@ -1,0 +1,21 @@
+easyblock = 'ConfigureMake'
+
+name = 'ClustalW2'
+version = '2.1'
+
+homepage = 'http://www.ebi.ac.uk/Tools/msa/clustalw2/'
+description = """ClustalW2 is a general purpose multiple sequence alignment program for DNA or proteins."""
+
+toolchain = {'name': 'intel', 'version': '2017.01'}
+toolchainopts = {'pic': True}
+
+source_urls = ['http://www.clustal.org/download/%(version)s']
+sources = ['clustalw-%(version)s.tar.gz']
+
+sanity_check_paths = {
+    'files': ['bin/clustalw2'],
+    'dirs': []
+}
+
+moduleclass = 'bio'
+
