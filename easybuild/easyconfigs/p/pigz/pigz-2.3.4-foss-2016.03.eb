@@ -1,0 +1,32 @@
+easyblock = 'MakeCp'
+
+name = 'pigz'
+version = '2.3.4'
+
+homepage = 'http://zlib.net/pigz/'
+description = """ pigz, which stands for parallel implementation of gzip, is a fully
+functional replacement for gzip that exploits multiple processors and multiple cores
+to the hilt when compressing data. pigz was written by Mark Adler, and uses the zlib
+and pthread libraries. """
+
+toolchain = {'name': 'foss', 'version': '2016.03'}
+
+source_urls = ['https://zlib.net/pigz/']
+sources = ['pigz-%(version)s.tar.gz']
+checksums = ['08e6b2e682bbf65ccf12c8966d633fc6']
+
+dependencies = [('zlib', '1.2.8')]
+
+buildopts = 'CC=$CC'
+
+parallel = 1
+
+files_to_copy = [(["pigz", "unpigz"], "bin")]
+
+sanity_check_paths = {
+'files': ["bin/pigz", "bin/unpigz"],
+'dirs': [""],
+}
+
+moduleclass = 'tools'
+
