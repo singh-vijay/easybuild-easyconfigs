@@ -1,0 +1,32 @@
+name = 'OpenBabel'
+version = '2.4.1'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'http://openbabel.org'
+description = """Open Babel is a chemical toolbox designed to speak the many
+ languages of chemical data. It's an open, collaborative project allowing anyone
+ to search, convert, analyze, or store data from molecular modeling, chemistry,
+ solid-state materials, biochemistry, or related areas."""
+
+toolchain = {'name': 'intel', 'version': '2017.01'}
+toolchainopts = {'strict': True}
+
+source_urls = [SOURCEFORGE_SOURCE]
+sources = [SOURCELOWER_TAR_GZ]
+
+builddependencies = [
+    ('CMake', '3.7.1'),
+]
+
+dependencies = [
+    ('Python', '2.7.12'),
+    ('zlib', '1.2.8', '', True),
+    ('libxml2', '2.9.4'),
+    ('Eigen', '3.2.8'),
+]
+
+patches = ['fix_ld_library_path_test.patch']
+
+runtest = 'test'
+
+moduleclass = 'chem'

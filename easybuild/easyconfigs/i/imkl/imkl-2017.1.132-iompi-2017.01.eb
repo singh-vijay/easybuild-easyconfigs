@@ -16,23 +16,25 @@ checksums = ['7911c0f777c4cb04225bf4518088939e']
 
 dontcreateinstalldir = 'True'
 
-license_file = HOME + '/licenses/intel/license.lic'
+# license file
+license_file = '/nfs/grid/software/RHEL7/licenses/intel/license.lic'
 
 interfaces = True
 
 postinstallcmds = [
-    # extract the examples
-    'tar xvzf %(installdir)s/mkl/examples/examples_cluster_c.tgz -C %(installdir)s/mkl/examples/',
-    'tar xvzf %(installdir)s/mkl/examples/examples_cluster_f.tgz -C %(installdir)s/mkl/examples/',
-    'tar xvzf %(installdir)s/mkl/examples/examples_core_c.tgz -C %(installdir)s/mkl/examples/',
-    'tar xvzf %(installdir)s/mkl/examples/examples_core_f.tgz -C %(installdir)s/mkl/examples/',
-    'tar xvzf %(installdir)s/mkl/examples/examples_f95.tgz -C %(installdir)s/mkl/examples/',
-    'tar xvzf %(installdir)s/mkl/examples/examples_mic_c.tgz -C %(installdir)s/mkl/examples/',
-    'tar xvzf %(installdir)s/mkl/examples/examples_mic_f.tgz -C %(installdir)s/mkl/examples/'
+	# extract the examples
+	 'tar xvzf %(installdir)s/mkl/examples/examples_cluster_c.tgz -C %(installdir)s/mkl/examples/',
+         'tar xvzf %(installdir)s/mkl/examples/examples_cluster_f.tgz -C %(installdir)s/mkl/examples/',
+         'tar xvzf %(installdir)s/mkl/examples/examples_core_c.tgz -C %(installdir)s/mkl/examples/',
+         'tar xvzf %(installdir)s/mkl/examples/examples_core_f.tgz -C %(installdir)s/mkl/examples/',
+         'tar xvzf %(installdir)s/mkl/examples/examples_f95.tgz -C %(installdir)s/mkl/examples/',
+         'tar xvzf %(installdir)s/mkl/examples/examples_mic_f.tgz -C %(installdir)s/mkl/examples/',
+         'tar xvzf %(installdir)s/mkl/examples/examples_mic_c.tgz -C %(installdir)s/mkl/examples/',
 ]
 
 modextravars = {
-    'MKL_EXAMPLES': '%(installdir)s/mkl/examples/',
+   'MKL_EXAMPLES': '%(installdir)s/mkl/examples/',
 }
+   
 
 moduleclass = 'numlib'

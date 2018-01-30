@@ -21,5 +21,9 @@ dependencies = [
 altroot = 'GCCcore'
 altversion = 'GCCcore'
 
+modluafooter = """
+family("Compiler")
+"""
+
 # this bundle serves as a compiler-only toolchain, so it should be marked as compiler (important for HMNS)
 moduleclass = 'compiler'

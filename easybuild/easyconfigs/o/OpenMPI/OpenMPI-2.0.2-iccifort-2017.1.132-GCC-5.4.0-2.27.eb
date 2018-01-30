@@ -1,0 +1,48 @@
+easyblock = 'ConfigureMake'
+
+name = 'OpenMPI'
+version = '2.0.2'
+
+homepage = 'http://www.open-mpi.org/'
+description = """The Open MPI Project is an open source MPI-2 implementation."""
+
+toolchain = {'name': 'iccifort', 'version': '2017.1.132-GCC-5.4.0-2.27'}
+
+source_urls = ['http://www.open-mpi.org/software/ompi/v%(version_major_minor)s/downloads']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['886698becc5bea8c151c0af2074b8392']
+
+dependencies = [('hwloc', '1.11.3')]
+
+modluafooter = """
+family("MPI") 
+local lsf_libdir = os.getenv("LSF_LIBDIR") 
+prepend_path("LD_LIBRARY_PATH",lsf_libdir)
+"""
+
+configopts = '--with-threads=posix --enable-shared --enable-mpi-thread-multiple '
+configopts += '--enable-mpirun-prefix-by-default '  # suppress failure modes in relation to mpirun path
+configopts += '--with-hwloc=$EBROOTHWLOC '  # hwloc support
+configopts += '--disable-dlopen '  # statically link component, don't do dynamic loading
+configopts += '--with-x ' # enabling X support
+configopts += '--enable-mpi-fortran ' # enable MPI Fortran bindings
+configopts += '--enable-mpi-cxx ' # enable C++ MPI bindings
+configopts += '--with-cma ' # cross memory attach support
+configopts += '--enable-memory-linux-malloc-alignment ' # memory malloc alignment
+configopts += ' --enable-memchecker ' # enable memory and buffer check
+configopts += '--with-valgrind ' # enable valgrind support
+
+osdependencies = [('valgrind', 'valgrind-devel')]
+
+# needed for --with-verbs
+#osdependencies = [('libibverbs-dev', 'libibverbs-devel')]
+
+libs = ["mpi_mpifh", "mpi", "ompitrace", "open-pal", "open-rte"]
+sanity_check_paths = {
+    'files': ["bin/%s" % binfile for binfile in ["ompi_info", "opal_wrapper", "orterun"]] +
+             ["lib/lib%s.%s" % (libfile, SHLIB_EXT) for libfile in libs] +
+             ["include/%s.h" % x for x in ["mpi-ext", "mpif-config", "mpif", "mpi", "mpi_portable_platform"]],
+    'dirs': [],
+}
+
+moduleclass = 'mpi'

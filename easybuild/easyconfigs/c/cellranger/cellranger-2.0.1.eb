@@ -1,0 +1,21 @@
+easyblock = "PackedBinary"
+
+name = 'cellranger'
+version = '2.0.1'
+
+
+homepage = 'https://support.10xgenomics.com/single-cell-gene-expression/software/overview/welcome'
+description = """The Chromium Single Cell Software Suite is a complete package for analyzing and visualizing single cell 3. RNA-seq data produced by the 10x Chromium Platform"""
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+#cellranger source is uploaded to Artifactory
+#source_urls = ['http://hpcv04.pfizer.com:8081/artifactory/hpc-source/']
+sources = [SOURCELOWER_TAR_GZ]
+
+sanity_check_paths = {
+    'files': ['cellranger'],
+    'dirs': [],
+}
+
+moduleclass = 'tools'

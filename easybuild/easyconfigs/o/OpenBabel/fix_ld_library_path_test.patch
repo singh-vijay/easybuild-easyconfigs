@@ -1,0 +1,30 @@
+diff -Naur openbabel-2.4.1.orig/test/CMakeLists.txt openbabel-2.4.1/test/CMakeLists.txt
+--- openbabel-2.4.1.orig/test/CMakeLists.txt	2017-09-06 12:33:08.362927288 -0400
++++ openbabel-2.4.1/test/CMakeLists.txt	2017-09-06 12:45:43.463313091 -0400
+@@ -148,7 +148,7 @@
+              ${TEST_PATH}/test_runner ${cpptest}test ${part})
+     set_tests_properties(test_${cpptest}_${part} PROPERTIES
+       FAIL_REGULAR_EXPRESSION "ERROR;FAIL;Test failed"
+-      ENVIRONMENT "BABEL_DATADIR=${CMAKE_SOURCE_DIR}/data;LD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/lib${LIB_SUFFIX}")
++      ENVIRONMENT "BABEL_DATADIR=${CMAKE_SOURCE_DIR}/data;")
+   endforeach()
+ endforeach()
+ 
+@@ -158,7 +158,7 @@
+              ${TEST_PATH}/test_runner ${cpptest} ${part})
+     set_tests_properties(test_${cpptest}_${part} PROPERTIES
+       FAIL_REGULAR_EXPRESSION "not ok"
+-      ENVIRONMENT "BABEL_DATADIR=${CMAKE_SOURCE_DIR}/data;LD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/lib${LIB_SUFFIX}")
++      ENVIRONMENT "BABEL_DATADIR=${CMAKE_SOURCE_DIR}/data;")
+   endforeach()
+ endforeach()
+ 
+@@ -184,7 +184,7 @@
+              ${TEST_PATH}/test_inchiwrite ${inchidata}/${test} ${inchidata}/${test}.txt)
+     set_tests_properties(inchi${test}_Test PROPERTIES
+                          FAIL_REGULAR_EXPRESSION "Not ok"
+-                         ENVIRONMENT "BABEL_DATADIR=${CMAKE_SOURCE_DIR}/data;LD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/lib${LIB_SUFFIX}"
++                         ENVIRONMENT "BABEL_DATADIR=${CMAKE_SOURCE_DIR}/data;"
+     )
+   endforeach(test ${inchitests})
+ endif(WITH_INCHI)
